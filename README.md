@@ -92,9 +92,7 @@ The API comes with the following features out of the box:
 - Authentication system
 - CRUD operations for users
 - CRUD operations for resources
-- Validation of incoming requests
-- Pagination
-- API rate limiting
+
 
 ## Contributing
 
