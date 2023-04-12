@@ -1,66 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel API in Docker Container using Sail
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a Laravel API application running inside a Docker container using Laravel Sail.
 
-## About Laravel
+## Getting Started
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Prerequisites
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Before getting started, make sure you have the following software installed on your local machine:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Learning Laravel
+### Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repository to your local machine using the following command:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+git clone https://github.com/MarvinDinaku/Vitual-Gym-Financial.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+2. Copy the `.env.example` file to `.env`:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+cp .env.example .env
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+This will start the Docker containers defined in the `docker-compose.yml` file.
+
+
+3. Start the Docker containers using the following command:
+
+./vendor/bin/sail up -d
+
+This will start the Docker containers defined in the `docker-compose.yml` file.
+
+
+4. Install the necessary dependencies using Composer:
+
+./vendor/bin/sail composer install
+
+
+
+5. Set up the database by running the following command:
+
+./vendor/bin/sail artisan migrate
+
+This will run the test database migrations and set up the tables required for the application.
+
+
+6. You should now be able to run tests on the testing database.
+
+./vendor/bin/sail artisan test
+
+
+7. Edit the .env file and change database name from:
+
+DB_DATABASE=testing to DB_DATABASE=vg_financial
+
+
+
+8. Set up the database again by running the following command:
+
+./vendor/bin/sail artisan migrate
+
+This will run the database migrations and set up the tables required for the application to run.
+
+
+9. Run the API on Postman or whatever software of your choice
+
+Store a membership for the user id 1 (When migratin the users table is seeded with 5 users
+
+Amount of credits is set to 16 (default and it can be changed regarding needs)
+
+Description is se to: test
+
+Status is set to: Active
+  
+Create membership command:
+
+1-> http://127.0.0.1:80/api/memberships/store?user_id=1&amount=16&description=test&status=Active
+
+After a membership is created the user can checkin
+
+Check in Command (API Endpoint):
+
+2-> http://127.0.0.1:80/api/user/1/checkin
+
+  
+## Features
+
+The API comes with the following features out of the box:
+
+- Authentication system
+- CRUD operations for users
+- CRUD operations for resources
+- Validation of incoming requests
+- Pagination
+- API rate limiting
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If you would like to contribute to this project, please follow these steps:
 
-## Code of Conduct
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes and commit them
+4. Push your changes to your fork
+5. Create a pull request to the original repository
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Please be sure to include a detailed description of your changes and any relevant screenshots or test cases.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. Please see the LICENSE file for more information.
+
+
+
+
