@@ -20,6 +20,7 @@ class User extends Model
         'name',
         'surname',
         'email',
+        'password'
     ];
 
     /**

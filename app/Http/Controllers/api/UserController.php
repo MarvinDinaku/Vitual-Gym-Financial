@@ -58,6 +58,10 @@ class UserController extends Controller
         else{
             $invoice->storeByInvoiceLine($id);
             $membership->updateAmount($id);
+            return response()->json([
+                "success" => true,
+                "message" => "Check-in successful",
+            ]);
         }
     }
 }
