@@ -22,49 +22,19 @@ git clone https://github.com/MarvinDinaku/Vitual-Gym-Financial.git
 
 cp .env.example .env
 
-
-This will start the Docker containers defined in the `docker-compose.yml` file.
-
-
-3. Start the Docker containers using the following command:
-
-./vendor/bin/sail up -d
-
-This will start the Docker containers defined in the `docker-compose.yml` file.
-
-
-4. Install the necessary dependencies using Composer:
+3. Install the necessary dependencies using Composer:
 
 ./vendor/bin/sail composer install
 
 
 
-5. Set up the database by running the following command:
+4. Set up the database by running the following command:
 
-./vendor/bin/sail artisan migrate
+php artisan migrate
 
 This will run the test database migrations and set up the tables required for the application.
 
-
-6. You should now be able to run tests on the testing database.
-
-./vendor/bin/sail artisan test
-
-
-7. Edit the .env file and change database name from:
-
-DB_DATABASE=testing to DB_DATABASE=vg_financial
-
-
-
-8. Set up the database again by running the following command:
-
-./vendor/bin/sail artisan migrate
-
-This will run the database migrations and set up the tables required for the application to run.
-
-
-9. Run the API on Postman or whatever software of your choice
+5. Run the API on Postman or whatever software of your choice
 
 Store a membership for the user id 1 (When migratin the users table is seeded with 5 users
 
@@ -76,7 +46,7 @@ Status is set to: Active
   
 Create membership command:
 
-1-> http://127.0.0.1:80/api/memberships/store?user_id=1&amount=16&description=test&status=Active
+1-> http://127.0.0.1:8000/api/memberships/store?user_id=1&amount=16&description=test&status=Active
 
 After a membership is created the user can checkin
 
