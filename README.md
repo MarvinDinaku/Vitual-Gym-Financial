@@ -24,13 +24,13 @@ cp .env.example .env
 
 3. Install the necessary dependencies using Composer:
 
-./vendor/bin/sail composer install
-
-
+composer install
 
 4. Set up the database by running the following command:
 
 php artisan migrate
+
+Run the program using: php artisan serve
 
 This will run the test database migrations and set up the tables required for the application.
 
